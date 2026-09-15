@@ -1,5 +1,6 @@
 package mobile.util;
 
+import lime.system.System;
 #if android
 import android.Permissions;
 import android.Settings;
@@ -7,6 +8,13 @@ import android.os.Environment;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 #end
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#end
+import flixel.FlxG;
+
+using StringTools;
 
 class StorageUtil
 {
@@ -53,11 +61,11 @@ class StorageUtil
 	}
 
 	// remaking the function because the original function is broken on 2.2.2 lol
-	public static inline function getGrantedPermissions():Array<String>
+	/*public static inline function getGrantedPermissions():Array<String>
 	{
 		final getGrantedPermissionsJNI:Null<Dynamic> = android.jni.JNICache.createStaticMethod('org/haxe/extension/Tools', 'getGrantedPermissions', '()[Ljava/lang/String;');
 
 		return getGrantedPermissionsJNI != null ? getGrantedPermissionsJNI() : [];
-	}
+	}*/
 	#end
 }
