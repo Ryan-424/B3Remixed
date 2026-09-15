@@ -22,6 +22,10 @@ import openfl.display.BitmapData;
 
 import flash.media.Sound;
 
+#if mobile
+import mobile.util.StorageUtil;
+#end
+
 #if cpp
 import cpp.vm.Gc;
 #elseif hl
