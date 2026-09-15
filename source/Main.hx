@@ -13,8 +13,8 @@ import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.display.StageScaleMode;
 #if mobile
-import mobile.util.StorageUtil;
 import mobile.states.CopyState;
+import mobile.util.StorageUtil;
 #end
 
 class Main extends Sprite
@@ -117,7 +117,7 @@ class Main extends Sprite
 		#end
 
 		#if android
-		FlxG.android.preventDefaultKeys = [BACK];
+		// FlxG.android.preventDefaultKeys = [BACK];
 		#end
 	}
 	
