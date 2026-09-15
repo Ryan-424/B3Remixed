@@ -1463,8 +1463,10 @@ class PlayState extends MusicBeatState
 		#else
 		var debugPath:String = '../../../../assets/preload/modcharts/' + songName;
 		var path:String = Paths.getPreloadPath('modcharts/' + songName);
+		#if !mobile
 		if (FileSystem.exists('../../windows') && FileSystem.exists(debugPath))
 			path = debugPath;
+		#end
 		#end
 		if (FileSystem.exists(path) && ClientPrefs.modCharts) {
 			trace("found lua " + path);
