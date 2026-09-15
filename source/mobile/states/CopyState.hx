@@ -5,10 +5,14 @@ import mobile.util.StorageUtil;
 #end
 
 import haxe.io.Path;
-
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#end
 import openfl.utils.Assets;
 import openfl.utils.ByteArray;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.ui.FlxBar;
