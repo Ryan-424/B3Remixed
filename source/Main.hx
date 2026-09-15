@@ -16,6 +16,9 @@ import openfl.display.StageScaleMode;
 import mobile.states.CopyState;
 import mobile.util.StorageUtil;
 #end
+import openfl.events.UncaughtErrorEvent;
+import haxe.CallStack;
+import haxe.io.Path;
 
 class Main extends Sprite
 {
@@ -89,10 +92,11 @@ class Main extends Sprite
 		#if !debug
 		initialState = TitleState;
 		#end
-		
-		// Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-		// Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-		// Lib.application.window.onClose.add(onClose);
+
+		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+		Lib.application.window.onClose.add(onClose);
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
@@ -108,8 +112,8 @@ class Main extends Sprite
 		}
 		// #end
 		
-		// FlxG.signals.focusGained.add(onFocus);
-		// FlxG.signals.focusLost.add(onFocusLost);
+		FlxG.signals.focusGained.add(onFocus);
+		FlxG.signals.focusLost.add(onFocusLost);
 		
 		#if html5
 		FlxG.autoPause = false;
@@ -119,6 +123,33 @@ class Main extends Sprite
 		#if android
 		FlxG.android.preventDefaultKeys = [BACK];
 		#end
+	}
+
+	function onCrash(e:UncaughtErrorEvent):Void
+	{
+		var errMsg:String = "";
+		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
+
+		for (stackItem in callStack)
+		{
+			switch (stackItem)
+			{
+				case FilePos(s, file, line, column):
+					errMsg += file + " (line " + line + ")\n";
+				default:
+					Sys.println(stackItem);
+			}
+		}
+
+		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/SMB-5/FNF-PFAN-Source-Public\n\n> Crash Handler written by: sqirra-rng";
+
+		CoolUtil.saveCrash(errMsg);
+
+		Application.current.window.alert(errMsg, "Error!");
+		#if desktop
+		//DiscordClient.shutdown();
+		#end
+		lime.system.System.exit(1);
 	}
 	
 	private function handleInput(evt:KeyboardEvent) {
