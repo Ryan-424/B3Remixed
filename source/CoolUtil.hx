@@ -11,6 +11,7 @@ import lime.utils.AssetManifest;
 import sys.io.File;
 import sys.FileSystem;
 #else
+import haxe.io.Path;
 import openfl.utils.Assets;
 #end
 #if android
