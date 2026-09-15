@@ -10,7 +10,10 @@ import openfl.utils.Assets;
 import openfl.utils.ByteArray;
 
 import flixel.FlxSprite;
+import flixel.text.FlxText;
 import flixel.ui.FlxBar;
+
+using StringTools;
 
 class CopyState extends MusicBeatState
 {
@@ -36,7 +39,7 @@ class CopyState extends MusicBeatState
 		}
 
 		if (!findNewFiles()) {
-			MusicBeatState.switchState(new states.TitleState());
+			MusicBeatState.switchState(new TitleState());
 			return;
 		}
 
@@ -48,7 +51,7 @@ class CopyState extends MusicBeatState
 
 		filesTotal = filesToAdd.length;
 
-		bg = new FlxSprite(0, 0, Paths.image('title-bg'));
+		bg = new FlxSprite(0, 0, Paths.image('funkay'));
 		bg.setGraphicSize(FlxG.width, FlxG.height);
 		bg.updateHitbox();
 		add(bg);
@@ -120,7 +123,7 @@ class CopyState extends MusicBeatState
 			FlxG.stage.window.alert(failedFiles.join('\n'), 'Failed to copy ${failedFiles.length} files');
 			CoolUtil.saveCrash(failedStack.join('\n'), 'CopyState');
 		}
-		FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = ()->MusicBeatState.switchState(new states.TitleState());
+		FlxG.sound.play(Paths.sound('confirmMenu')).onComplete = ()->MusicBeatState.switchState(new TitleState());
 	}
 
 	static function getBytes(file:String, embedded:Bool = true) {
