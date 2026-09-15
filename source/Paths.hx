@@ -459,7 +459,7 @@ class Paths
 		// trace(gottenPath);
 		if(!currentTrackedSounds.exists(gottenPath)) 
 		#if MODS_ALLOWED
-			currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
+			currentTrackedSounds.set(gottenPath, Sound.fromFile(#if !mobile './' + #end gottenPath));
 		#else
 			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(getPath('$path/$key.$SOUND_EXT', SOUND, library)));
 		#end
@@ -469,7 +469,7 @@ class Paths
 	
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
-		return 'mods/' + key;
+		return #if mobile StorageUtil.getExternalDir() + #end 'mods/' + key;
 	}
 	
 	inline static public function modsFont(key:String) {
@@ -516,7 +516,7 @@ class Paths
 				return fileToCheck;
 			}
 		}
-		return 'mods/' + key;
+		return #if mobile StorageUtil.getExternalDir() + #end 'mods/' + key;
 	}
 
 	static public function getModDirectories():Array<String> {
