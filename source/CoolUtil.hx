@@ -13,6 +13,9 @@ import sys.FileSystem;
 #else
 import openfl.utils.Assets;
 #end
+#if android
+import mobile.util.StorageUtil;
+#end
 
 using StringTools;
 
@@ -170,5 +173,31 @@ class CoolUtil
 		#else
 		FlxG.openURL(site);
 		#end
+	}
+
+	// like FileSystem.deleteDirectory but works for non-empty directories and removes everything in it
+	public static function deleteDirectory(path:String) {
+		if (!FileSystem.exists(path) || !FileSystem.isDirectory(path)) return;
+		try {
+			for (file in FileSystem.readDirectory(path)) {
+				var fullPath:String = Path.join([path, file]);
+				if (FileSystem.isDirectory(fullPath)) CoolUtil.deleteDirectory(fullPath);
+				else FileSystem.deleteFile(fullPath);
+			}
+			FileSystem.deleteDirectory(path);
+		}
+		catch(e:Dynamic) {
+			throw e;
+		}
+	}
+
+	public static function saveCrash(content:String, filePrefix:String = 'PsychEngine') {
+		var cwd:String = #if android StorageUtil.getExternalDir() #else Sys.getCwd() #end;
+		var date:String = Date.now().toString().replace(" ", "_").replace(":", "'");
+		var path:String = 'logs/' + filePrefix + '_' + date + '.txt';
+		if (!FileSystem.exists(cwd + 'logs/')) FileSystem.createDirectory(cwd + 'logs/');
+		File.saveContent(cwd + path, content);
+		Sys.println(content);
+		Sys.println("Crash dump saved in " + Path.normalize(path));
 	}
 }
