@@ -9,6 +9,7 @@ import haxe.io.Path;
 import openfl.utils.Assets;
 import openfl.utils.ByteArray;
 
+import flixel.FlxSprite;
 import flixel.ui.FlxBar;
 
 class CopyState extends MusicBeatState
