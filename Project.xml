@@ -157,6 +157,16 @@
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
+	<!-- Permissions -->
+	<!-- To check for updates -->
+	<config:android permission="android.permission.INTERNET" />
+	<!-- External directory access -->
+	<!-- Android 10 and below -->
+	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
+	<config:android permission="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<!-- Android 11+ -->
+	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
