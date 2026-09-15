@@ -12,6 +12,10 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.display.StageScaleMode;
+import CopyState;
+#if mobile
+import mobile.util.StorageUtil;
+#end
 
 class Main extends Sprite
 {
@@ -39,6 +43,14 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+
+		#if mobile
+		#if android
+		StorageUtil.requestPermissions();
+		StorageUtil.setupExternalStorage();
+		#end
+		Sys.setCwd(StorageUtil.getExternalDir());
+		#end
 
 		if (stage != null)
 		{
@@ -84,9 +96,9 @@ class Main extends Sprite
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(gameWidth, gameHeight, #if mobile CopyState #else initialState #end, zoom, framerate, framerate, skipSplash, startFullscreen));
 
-		#if !mobile
+		// #if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
@@ -94,7 +106,7 @@ class Main extends Sprite
 		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
-		#end
+		// #end
 		
 		FlxG.signals.focusGained.add(onFocus);
 		FlxG.signals.focusLost.add(onFocusLost);
@@ -102,6 +114,10 @@ class Main extends Sprite
 		#if html5
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
+		#end
+
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
 		#end
 	}
 	
