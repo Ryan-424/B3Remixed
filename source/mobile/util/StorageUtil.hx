@@ -33,7 +33,7 @@ class StorageUtil
 			Settings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
 		}
 
-		if (!Environment.isExternalStorageManager() || VERSION.SDK_INT < VERSION_CODES.R && !StorageUtil.getGrantedPermissions().contains('android.permission.READ_EXTERNAL_STORAGE')) {
+		if (!Environment.isExternalStorageManager() || VERSION.SDK_INT < VERSION_CODES.R) {
 			FlxG.stage.window.alert('Make sure that you have accepted all necessary permissions, expect a crash otherwise.', 'Notice!');
 		}
 	}
