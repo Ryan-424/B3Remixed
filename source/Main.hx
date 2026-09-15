@@ -12,9 +12,9 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.events.KeyboardEvent;
 import openfl.display.StageScaleMode;
-import CopyState;
 #if mobile
 import mobile.util.StorageUtil;
+import mobile.states.CopyState;
 #end
 
 class Main extends Sprite
