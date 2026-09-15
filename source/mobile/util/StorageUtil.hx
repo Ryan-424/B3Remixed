@@ -27,7 +27,8 @@ class StorageUtil
 	#if android
 	public static function requestPermissions() {
 		if (VERSION.SDK_INT < VERSION_CODES.R) {
-			Permissions.requestPermissions(['READ_EXTERNAL_STORAGE', 'WRITE_EXTERNAL_STORAGE']);
+			Permissions.requestPermission('READ_EXTERNAL_STORAGE');
+			Permissions.requestPermission('WRITE_EXTERNAL_STORAGE');
 		}
 		else if (!Environment.isExternalStorageManager()) {
 			Settings.requestSetting('MANAGE_APP_ALL_FILES_ACCESS_PERMISSION');
