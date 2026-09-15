@@ -90,9 +90,9 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 		
-		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-		Lib.application.window.onClose.add(onClose);
+		// Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+		// Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
+		// Lib.application.window.onClose.add(onClose);
 
 		ClientPrefs.loadDefaultKeys();
 		// the reason for this is we're going to be handling our own cache smartly
@@ -108,8 +108,8 @@ class Main extends Sprite
 		}
 		// #end
 		
-		FlxG.signals.focusGained.add(onFocus);
-		FlxG.signals.focusLost.add(onFocusLost);
+		// FlxG.signals.focusGained.add(onFocus);
+		// FlxG.signals.focusLost.add(onFocusLost);
 		
 		#if html5
 		FlxG.autoPause = false;
@@ -117,7 +117,7 @@ class Main extends Sprite
 		#end
 
 		#if android
-		// FlxG.android.preventDefaultKeys = [BACK];
+		FlxG.android.preventDefaultKeys = [BACK];
 		#end
 	}
 	
