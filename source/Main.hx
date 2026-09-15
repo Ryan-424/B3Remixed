@@ -16,6 +16,7 @@ import openfl.display.StageScaleMode;
 import mobile.states.CopyState;
 import mobile.util.StorageUtil;
 #end
+import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import haxe.io.Path;
