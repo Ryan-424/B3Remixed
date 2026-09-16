@@ -167,7 +167,8 @@
 	<!-- Android 11+ -->
 	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-	<template path="templates/android/app/build.gradle" rename="app/build.gradle" if="android"/>
+	<!-- <template path="templates/android/app/build.gradle" rename="app/build.gradle" if="android"/> -->
+	<config:android gradle-properties="android.aaptOptions.ignoreAssetsPattern=!._" if="android"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
