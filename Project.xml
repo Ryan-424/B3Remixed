@@ -167,7 +167,7 @@
 	<!-- Android 11+ -->
 	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-	<assets path="assets/preload/modcharts/_objs" rename="preload/modcharts/_objs" embedding="false" />
+	<template path="templates/android/app/build.gradle" rename="app/build.gradle" if="android"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
