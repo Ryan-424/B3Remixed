@@ -79,6 +79,10 @@ android {
         buildConfig = true
     }
 
+    aaptOptions {
+        ignoreAssetsPattern "!_*"
+    }
+
 	android.applicationVariants.all { variant ->
 		variant.outputs.all { output ->
 			if (outputFileName != null && outputFileName.endsWith('.apk')) {
