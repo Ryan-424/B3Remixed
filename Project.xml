@@ -158,8 +158,6 @@
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
 
 	<!-- Permissions -->
-	<!-- To check for updates -->
-	<config:android permission="android.permission.INTERNET" />
 	<!-- External directory access -->
 	<!-- Android 10 and below -->
 	<config:android permission="android.permission.READ_EXTERNAL_STORAGE" />
@@ -167,8 +165,7 @@
 	<!-- Android 11+ -->
 	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-	<!-- <template path="templates/android/app/build.gradle" rename="app/build.gradle" if="android"/> -->
-	<config:android gradle-properties="android.aaptOptions.ignoreAssetsPattern=!_*" if="android"/>
+	<template path="templates/android/app/build.gradle" rename="app/build.gradle" if="android"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
