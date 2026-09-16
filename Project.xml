@@ -167,17 +167,7 @@
 	<!-- Android 11+ -->
 	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
-	<config:android>
-        <buildGradle><![CDATA[
-            afterEvaluate {
-                android {
-                    aaptOptions {
-                        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
-                    }
-                }
-            }
-        ]]></buildGradle>
-    </config:android>
+	<assets path="assets/preload/modcharts/_objs" rename="preload/modcharts/_objs" embedding="false" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
