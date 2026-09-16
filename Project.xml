@@ -167,6 +167,18 @@
 	<!-- Android 11+ -->
 	<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
+	<config:android>
+        <buildGradle><![CDATA[
+            afterEvaluate {
+                android {
+                    aaptOptions {
+                        ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~'
+                    }
+                }
+            }
+        ]]></buildGradle>
+    </config:android>
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
