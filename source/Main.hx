@@ -55,6 +55,7 @@ class Main extends Sprite
 		#end
 		Sys.setCwd(StorageUtil.getExternalDir());
 		#end
+		mobile.CrashHandler.init();
 
 		if (stage != null)
 		{
@@ -94,7 +95,7 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 
-		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		// Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		Lib.application.window.onClose.add(onClose);
