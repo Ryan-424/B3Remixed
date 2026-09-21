@@ -73,8 +73,8 @@ class CrashHandler
 		#if sys
 		saveErrorMessage('$m\n$stackLabel');
 		#end
-
-    Application.current.window.alert('$m\n$stackLabel', "Error!");
+					
+		Application.current.window.alert('$m\n$stackLabel', "Error!");
 		#if desktop DiscordClient.shutdown(); #end
 		lime.system.System.exit(1);
 	}
@@ -93,7 +93,7 @@ class CrashHandler
 		saveErrorMessage(log.join('\n'));
 		#end
 
-		CoolUtil.showPopUp(log.join('\n'), "Critical Error!");
+		Application.current.window.alert(log.join('\n'), "Critical Error!");
 		#if desktop DiscordClient.shutdown(); #end
 		lime.system.System.exit(1);
 	}
