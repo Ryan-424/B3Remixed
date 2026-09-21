@@ -9,6 +9,10 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+#if mobile
+import mobile.util.StorageUtil;
+#end
+
 using StringTools;
 using flixel.util.FlxArrayUtil;
 
